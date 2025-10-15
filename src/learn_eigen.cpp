@@ -114,7 +114,7 @@ int main() {
     Eigen::Quaterniond q = yawAngle * pitchAngle * rollAngle;
     // 5. 转换为矩阵 (不变)
     Eigen::Matrix3d rotationMatrix = q.matrix();
-    
+
     // 从旋转矩阵创建四元数
     Eigen::Quaterniond q2(rotationMatrix);
     // 从四元数获取欧拉角
