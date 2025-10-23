@@ -24,7 +24,7 @@ int main() {
 */
 
 int main(){
-    Eigen::Matrix4f cu_T,ua_T,ca_T,ac_T,ba_T;
+    Eigen::Matrix4f cu_T,ua_T,ca_T,ac_T,ba_T,au_T,uc_T,bu_T;
     ua_T<<0.866, -0.5, 0, 11,
           0.5, 0.866, 0, -1,
           0, 0, 1, 8,
@@ -36,17 +36,26 @@ int main(){
           0, 0, 0, 1;
           
     cu_T<<0.866, -0.5, 0, -3,
-          0.433, 0.75, -0.5, 3,
+          0.433, 0.75, -0.5, -3,
           0.25, 0.433, 0.866, 3,
           0, 0, 0, 1;
     
     ca_T = cu_T*ua_T;
+    au_T = ua_T.inverse();
     ac_T = ca_T.inverse();
-    std::cout<<"ca_T:\n"<<ca_T<<std::endl;
-    std::cout<<"\n=================================\n"<<std::endl;
-    std::cout<<"ac_T:\n"<<ac_T<<std::endl;
+    uc_T = cu_T.inverse();
+    bu_T = ba_T*au_T;
+
+    // std::cout<<"ca_T:\n"<<ca_T<<std::endl;
+    // std::cout<<"bu_T:\n"<<bu_T<<std::endl;
+    // std::cout<<"\n=================================\n"<<std::endl;
+    // std::cout<<"ac_T:\n"<<ac_T<<std::endl;
+    // std::cout<<"au_T:\n"<<au_T<<std::endl;
+    // std::cout<<"uc_T:\n"<<uc_T<<std::endl;
     std::cout<<"\n=================================\n"<<std::endl;
     std::cout<<"bc_T=ba_T*ac_T:\n"<<ba_T*ac_T<<std::endl;
+    std::cout<<"\n=================================\n"<<std::endl;
+    std::cout<<"bc_T=bu_T*uc_T:\n"<<bu_T*uc_T<<std::endl;
     return 0;
 }
 
