@@ -1,5 +1,4 @@
 #include "include/learn_eigen.hpp"
-
 /*
 int main() {
     Eigen::Matrix3d fixedMat;
@@ -23,6 +22,33 @@ int main() {
     return 0;
 }
 */
+
+int main(){
+    Eigen::Matrix4f cu_T,ua_T,ca_T,ac_T,ba_T;
+    ua_T<<0.866, -0.5, 0, 11,
+          0.5, 0.866, 0, -1,
+          0, 0, 1, 8,
+          0, 0, 0, 1;
+
+    ba_T<<1, 0, 0, 0,
+          0, 0.866, -0.5, 10,
+          0, 0.5, 0.866, -20,
+          0, 0, 0, 1;
+          
+    cu_T<<0.866, -0.5, 0, -3,
+          0.433, 0.75, -0.5, 3,
+          0.25, 0.433, 0.866, 3,
+          0, 0, 0, 1;
+    
+    ca_T = cu_T*ua_T;
+    ac_T = ca_T.inverse();
+    std::cout<<"ca_T:\n"<<ca_T<<std::endl;
+    std::cout<<"\n=================================\n"<<std::endl;
+    std::cout<<"ac_T:\n"<<ac_T<<std::endl;
+    std::cout<<"\n=================================\n"<<std::endl;
+    std::cout<<"bc_T=ba_T*ac_T:\n"<<ba_T*ac_T<<std::endl;
+    return 0;
+}
 
 
 //特殊矩阵生成函数则能快速生成特定类型的矩阵。
@@ -90,7 +116,7 @@ int main() {
 
 //旋转矩阵、四元数和欧拉角是描述三维空间中旋转的三种常用方式
 //旋转矩阵是一个3×3的矩阵，四元数是一个四维向量，欧拉角则是三个角度的组合。
-// /*
+
 /**
  * @brief 演示如何使用 Eigen 库进行欧拉角、旋转矩阵和四元数之间的转换。
  *
@@ -102,6 +128,7 @@ int main() {
  *
  * 该示例展示了 Eigen 库在三维空间旋转表示之间的相互转换方法。
  */
+/*
 int main() {
     // 从欧拉角创建旋转矩阵
     // 1. Roll (绕 X 轴旋转 M_PI / 4)
@@ -124,4 +151,4 @@ int main() {
     std::cout << "Euler angles (yaw, pitch, roll): " << eulerAngles.transpose() << std::endl;
     return 0;
 }
-// */
+*/
